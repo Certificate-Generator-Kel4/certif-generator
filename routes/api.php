@@ -18,4 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-route::get('/participant',[App\Http\Controllers\ParticipantController::class, 'index']);
+route::get('/participant',[App\Http\Controllers\superadmin\ParticipantController::class, 'index']);
+route::get('/event',[App\Http\Controllers\superadmin\EventController::class, 'index']);
+route::get('/event/{id}',[App\Http\Controllers\superadmin\EventController::class, 'show']);
+route::delete('/event/{id}/delete',[App\Http\Controllers\superadmin\EventController::class, 'destroy']);
