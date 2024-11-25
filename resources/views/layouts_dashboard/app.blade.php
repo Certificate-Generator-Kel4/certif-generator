@@ -14,6 +14,8 @@
     <!-- Custom fonts for this template-->
     <link href="{{asset ('assets_dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
         type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -39,6 +41,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
+             
             <div id="content">
 
                 <!-- Topbar -->
@@ -48,6 +51,7 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    @yield('back')
                     <div class="card shadow mb-4 p-4">
                         <!-- Page contect -->
                         @yield('content')

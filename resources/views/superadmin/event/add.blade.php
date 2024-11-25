@@ -1,13 +1,14 @@
 @extends('layouts_dashboard.app')
 
+@section('back')
+<a href="javascript:history.back()" class="btn btn-primary mb-3"><i class="fa-solid fa-backward"></i></a>
+@endsection
+
 @section('content')
 <div class="card-header py-3 d-flex justify-content-start mb-3">
 <div class="col-lg-12 margin-tb d-flex justify-content-start">
             <div class="pull-left">
                 <h3>Add Data Event</h3>
-            </div>
-            <div class="pull-right ml-4">
-                <a class="btn btn-primary" href="{{ route('superadmin.event') }}"> Back</a>
             </div>
         </div>
 </div>

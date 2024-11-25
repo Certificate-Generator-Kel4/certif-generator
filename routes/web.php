@@ -31,6 +31,16 @@ Route::group(['middleware' => ['role:super-admin'], 'prefix' => 'superadmin'], f
     Route::put('/event/update/{id}', [App\Http\Controllers\superadmin\EventController::class, 'update'])->name('superadmin.event.update');
     Route::get('/event/show/{id}', [App\Http\Controllers\superadmin\EventController::class, 'show'])->name('superadmin.event.show');
     Route::get('/event/destroy/{id}', [App\Http\Controllers\superadmin\EventController::class, 'destroy'])->name('superadmin.event.destroy');
+
+
+    Route::get('/participant/export', [App\Http\Controllers\superadmin\ParticipantController::class, 'export_template'])->name('superadmin.participant.export_template');
+    Route::get('/participant/import/create/{id}', [App\Http\Controllers\superadmin\ParticipantController::class, 'import_create'])->name('superadmin.participant.import.create');
+    Route::get('/event/destroy_all/{id}', [App\Http\Controllers\superadmin\ParticipantController::class, 'destroy_all'])->name('superadmin.participant.destroy_all');
+    Route::post('/participant/import/store', [App\Http\Controllers\superadmin\ParticipantController::class, 'import_store'])->name('superadmin.participant.import.store');
+    Route::get('/participant/edit/{id}', [App\Http\Controllers\superadmin\ParticipantController::class, 'edit'])->name('superadmin.participant.edit');
+    Route::put('/participant/update/{id}', [App\Http\Controllers\superadmin\ParticipantController::class, 'update'])->name('superadmin.participant.update');
+    Route::get('/participant/destroy/{id}', [App\Http\Controllers\superadmin\ParticipantController::class, 'destroy'])->name('superadmin.participant.destroy');
+
 });
 
 
