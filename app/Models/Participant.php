@@ -17,7 +17,14 @@ class Participant extends Model
         'event_id',
     ];
 
-    public function event(){
+    public function event()
+    {
         return $this->belongsTo(Event::class);
     }
+
+    public function certificate()
+    {
+        return $this->hasOne(Certificate::class);
+    }
+
 }

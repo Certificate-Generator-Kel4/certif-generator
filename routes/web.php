@@ -41,6 +41,10 @@ Route::group(['middleware' => ['role:super-admin'], 'prefix' => 'superadmin'], f
     Route::put('/participant/update/{id}', [App\Http\Controllers\superadmin\ParticipantController::class, 'update'])->name('superadmin.participant.update');
     Route::get('/participant/destroy/{id}', [App\Http\Controllers\superadmin\ParticipantController::class, 'destroy'])->name('superadmin.participant.destroy');
 
+
+    Route::get('/certificate/store/{id}', [App\Http\Controllers\superadmin\CertifController::class, 'store'])->name('superadmin.certificate.store');
+    Route::get('/certificate/show/{id}', [App\Http\Controllers\superadmin\CertifController::class, 'show'])->name('superadmin.certificate.show');
+
 });
 
 

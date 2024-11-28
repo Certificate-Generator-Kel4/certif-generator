@@ -22,8 +22,14 @@ class Event extends Model
         
     ];
 
-    public function participant(){
-        return $this->hasOne(Participant::class);
+    public function participant()
+    {
+        return $this->hasMany(Participant::class);
+    }
+
+    public function certificate()
+    {
+        return $this->hasMany(Certificate::class);
     }
 
     public function user(){

@@ -7,6 +7,10 @@
 @section('content')
 <div class="card-header">
     <h3>Detail Event: {{ $detail_event->nama_event }}</h3>
+    <a href="{{ route('superadmin.certificate.store', $detail_event->id) }}" 
+   class="btn btn-primary">
+   Generate Certificates
+</a>
 </div>
 <div class="card-body">
     <div class="row">
@@ -67,6 +71,8 @@
                             class="btn btn-warning btn-sm mr-2"><i class="fa-regular fa-pen-to-square"></i></a>
                         <a href="{{ route('superadmin.participant.destroy', $p->id) }}" class="btn btn-danger btn-sm"
                             onclick="return confirm('Are you sure?')"><i class="fa-solid fa-trash"></i></a>
+                            <a href="{{ route('superadmin.certificate.show', $p->id) }}"
+                            class="btn btn-warning btn-sm mr-2"><i class="fa-regular fa-pen-to-square"></i></a>
                     </td>
 
                     </tr>

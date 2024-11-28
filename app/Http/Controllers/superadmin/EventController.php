@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Participant;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 
 class EventController extends Controller
