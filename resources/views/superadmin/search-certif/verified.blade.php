@@ -20,3 +20,5 @@
     </div>
 </div>
 @endsection
+    verified
+@endsection('content')

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
 use App\Models\Participant;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -37,6 +38,9 @@ class HomeController extends Controller
     }
 
     function admin(){
-        return view('admin.index');
+        $eventId = Event::where('user_id', Auth::user()->id)->pluck('id');
+        $event = Event::where('user_id', Auth::user()->id)->count();
+        $participant = Participant::whereIn('event_id', $eventId)->count();
+        return view('admin.index',compact('event', 'participant'));
     }
 }

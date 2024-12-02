@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\superadmin;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,6 +9,8 @@ use App\Models\Participant;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class EventController extends Controller
@@ -20,11 +22,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        
-    $get_event = Event::with('user')->get();
-
-        // return response()->json($get_event);
-        return view('superadmin.event.index', compact('get_event'));
+        $get_event = Event::with('user')->where('user_id', Auth::user()->id)->get();
+        return view('admin.event.index', compact('get_event'));
     }
 
     /**
@@ -34,7 +33,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('superadmin.event.add');
+        return view('admin.event.add');
     }
 
     /**
@@ -78,7 +77,7 @@ class EventController extends Controller
             'user_id' => $request->user_id,
         ]);
         
-        return redirect()->route('superadmin.event');
+        return redirect()->route('admin.event');
       
     }
 
@@ -94,7 +93,7 @@ class EventController extends Controller
         
         $participant = Participant::where('event_id', $id)->get();
 
-        return view('superadmin.event.show', compact('detail_event','participant'));
+        return view('admin.event.show', compact('detail_event','participant'));
     }
 
     /**
@@ -107,7 +106,7 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id);
 
-        return view('superadmin.event.edit',compact('event'));
+        return view('admin.event.edit',compact('event'));
     }
 
     /**
@@ -153,7 +152,7 @@ class EventController extends Controller
             'user_id' => $request->user_id,
         ]);
     
-        return redirect()->route('superadmin.event')->with('success', 'Event updated successfully!');
+        return redirect()->route('admin.event')->with('success', 'Event updated successfully!');
     }
     
 
@@ -167,7 +166,7 @@ class EventController extends Controller
     {
         $delete_event = Event::findOrFail($id);
         $delete_event->delete();
-        return redirect()->route('superadmin.event');
+        return redirect()->route('admin.event');
 
     }
 }
