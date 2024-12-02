@@ -7,7 +7,7 @@
 @section('content')
 <div class="card-header">
     <h3>Detail Event: {{ $detail_event->nama_event }}</h3>
-    <a href="{{ route('superadmin.certificate.store', $detail_event->id) }}" 
+    <a href="{{ route('admin.certificate.store', $detail_event->id) }}" 
    class="btn btn-primary">
    Generate Certificates
 </a>
@@ -38,14 +38,16 @@
         </div>
     </div>
 
+   
+
     <!-- Daftar Peserta -->
     <div class="card mt-4">
         <div class="card-header">
             <h4>Daftar Peserta</h4>
-            <a href="{{ route('superadmin.participant.import.create',  $detail_event->id) }}"
+            <a href="{{ route('admin.participant.import.create',  $detail_event->id) }}"
                 class="btn btn-sm btn-primary">Add
                 participant</a>
-            <a href="{{ route('superadmin.participant.destroy_all',  $detail_event->id) }}"
+            <a href="{{ route('admin.participant.destroy_all',  $detail_event->id) }}"
                 class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete All participant</a>
         </div>
         <div class="card-body">
@@ -67,11 +69,11 @@
                         <td>{{ $p->email }}</td>
                         <td>{{ $p->no_telp }}</td>
                         <td class="d-flex justify-content-center">
-                        <a href="{{ route('superadmin.participant.edit', $p->id) }}"
+                        <a href="{{ route('admin.participant.edit', $p->id) }}"
                             class="btn btn-warning btn-sm mr-2"><i class="fa-regular fa-pen-to-square"></i></a>
-                        <a href="{{ route('superadmin.participant.destroy', $p->id) }}" class="btn btn-danger btn-sm"
+                        <a href="{{ route('admin.participant.destroy', $p->id) }}" class="btn btn-danger btn-sm"
                             onclick="return confirm('Are you sure?')"><i class="fa-solid fa-trash"></i></a>
-                            <a href="{{ route('superadmin.certificate.pdf', $p->id) }}"
+                            <a href="{{ route('admin.certificate.pdf', $p->id) }}"
                             class="btn btn-success btn-sm ml-2">pdf</a>
                     </td>
 

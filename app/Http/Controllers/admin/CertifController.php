@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\superadmin;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\Mail;
 
 class CertifController extends Controller
 {
-    
-    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         //
@@ -26,9 +29,9 @@ class CertifController extends Controller
 
     public function create()
     {
-        return view('superadmin.certificate.add');
+        return view('admin.certificate.add');
     }
-
+  
     public function store(Request $request, string $eventId)
     {
         $event = Event::findOrFail($eventId);
@@ -47,37 +50,20 @@ class CertifController extends Controller
                 'style' => 'style 1',
                 'signature' => null,
             ]);
-    
-            // Send email with the certificate PDF attached
+
             Mail::to($participant->email)->send(new CertificateMail($participant, $certificate));
         }
     
-        return redirect()->to(url("/superadmin/event/show/{$eventId}"))
+        return redirect()->to(url("/admin/event/show/{$eventId}"))
             ->with('success', 'Participants imported and emails sent successfully.');
     }
     
+
     public function show($id)
     {
         $certif = Certificate::where('participant_id', $id)->first();
 
-        return view('superadmin.certificate.show', compact('certif'));
-    }
-
-    public function indexSearch(){
-        return view('superadmin.search-certif.index');
-    }
-
-    public function search(Request $request)
-    {
-        $search = $request->input('search');
-
-        $results = Certificate::where('id', $search)->get();
-        
-        if ($results->isEmpty()) {
-            return view('superadmin.search-certif.unverified', compact('search')) ;
-        }
-    
-        return view('superadmin.search-certif.verified', compact('results'));
+        return view('admin.certificate.show', compact('certif'));
     }
 
 
@@ -91,7 +77,7 @@ class CertifController extends Controller
     
         $nama = $certif->participant->nama;
         
-        $pdf = PDF::loadView('superadmin.certificate.certif_pdf', compact('certif', 'participant'));
+        $pdf = PDF::loadView('admin.certificate.certif_pdf', compact('certif', 'participant'));
         $pdf->setPaper('A4', 'landscape');
         
         return $pdf->stream("certif_$nama.pdf");

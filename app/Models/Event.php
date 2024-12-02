@@ -22,11 +22,10 @@ class Event extends Model
         
     ];
 
-    public function participant()
-    {
-        return $this->hasMany(Participant::class);
-    }
-
+    public function participants()
+{
+    return $this->hasMany(Participant::class, 'event_id');
+}
     public function certificate()
     {
         return $this->hasMany(Certificate::class);

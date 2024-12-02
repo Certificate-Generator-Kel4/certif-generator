@@ -27,7 +27,7 @@
 </div>
 
 
-<form action="{{route('superadmin.participant.update', $participant->id)}}" method="POST" enctype="multipart/form-data">
+<form action="{{route('admin.participant.update', $participant->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('put')
 
