@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\superadmin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Certificate;
 use App\Models\Event;
 use Illuminate\Support\Str;
+
 
 
 class CertifController extends Controller
@@ -19,7 +19,8 @@ class CertifController extends Controller
      */
     public function index()
     {
-        //
+        $templates = Certificate::all(); 
+        return view('superadmin.certificate.index', compact('templates'));
     }
 
     /**
@@ -81,7 +82,8 @@ class CertifController extends Controller
      */
     public function edit($id)
     {
-        //
+        $template = Certificate::findOrFail($id);
+        return view('superadmin.certificate.edit', compact('template'));
     }
 
     /**
@@ -93,7 +95,21 @@ class CertifController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'background_url' => 'required|url',
+        'style' => 'nullable|string|max:255',
+    ]);
+
+    $template = Certificate::findOrFail($id);
+    $template->update([
+        'title' => $validated['title'],
+        'background_url' => $validated['background_url'],
+        'style' => $validated['style'] ?? $template->style,
+    ]);
+
+    return redirect()->route('certificate.index')->with('success', 'Template updated successfully.');
     }
 
     /**
@@ -106,4 +122,24 @@ class CertifController extends Controller
     {
         //
     }
+    public function template()
+{
+    $templates = [
+        ['id' => 1, 'name' => 'Template 1', 'preview' => asset('sertif/1.jpeg'),],
+        ['id' => 2, 'name' => 'Template 2', 'preview' => asset('sertif/1.jpeg'),],
+    ];
+
+    return view('superadmin.certificate.template', compact('templates'));
+}
+public function generate($template_id)
+{
+    // Ambil template berdasarkan ID yang dipilih
+    $template = Certificate::findOrFail($template_id);
+
+    // Tampilkan halaman generate sertifikat dengan data template yang dipilih
+    return view('superadmin.certificate.generate', compact('template'));
+}
+
+
+    
 }

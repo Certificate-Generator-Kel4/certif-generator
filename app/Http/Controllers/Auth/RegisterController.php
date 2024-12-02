@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -68,7 +69,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'role' => $data['role'],
+            // 'role' => $data['role'],
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -82,5 +83,16 @@ class RegisterController extends Controller
         } else {
             return route('home'); // Default
         }
+    }
+    public function register(Request $request)
+    {
+        // Validasi input
+        $this->validator($request->all())->validate();
+
+        // Simpan pengguna ke database
+        $this->create($request->all());
+
+        // Redirect ke halaman login dengan pesan sukses
+        return redirect()->route('login')->with('success', 'Registration successful. Please login to continue.');
     }
 }

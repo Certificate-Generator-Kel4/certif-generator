@@ -1,20 +1,23 @@
 @extends('layouts_dashboard.app')
 
 @section('content')
-
-
-<form action="{{route('superadmin.event.store')}}"  method="POST" enctype="multipart/form-data">
-    @csrf
-    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-    
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="nama_event">Nama Event</label>
-            <input type="text" name="nama_event" class="form-control" id="nama_event">
+<div class="container mt-4">
+    <h1>Add Certificate Template</h1>
+    <form method="POST" action="{{ route('certificate.store') }}">
+        @csrf
+        <div class="mb-3">
+            <label for="title" class="form-label">Template Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
         </div>
-
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-@endsection('content')
+        <div class="mb-3">
+            <label for="background_url" class="form-label">Background URL</label>
+            <input type="url" class="form-control" id="background_url" name="background_url" required>
+        </div>
+        <div class="mb-3">
+            <label for="style" class="form-label">Style (Optional)</label>
+            <input type="text" class="form-control" id="style" name="style">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Template</button>
+    </form>
+</div>
+@endsection
