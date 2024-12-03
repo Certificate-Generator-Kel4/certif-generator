@@ -82,6 +82,37 @@ Route::group(['middleware' => ['role:admin'], 'prefix' => 'admin'], function () 
     Route::get('participant/export', [App\Http\Controllers\admin\ParticipantController::class, 'export_template'])->name('admin.participant.export_template');
     Route::post('participant/import/store', [App\Http\Controllers\admin\ParticipantController::class, 'import_store'])->name('admin.participant.import.store');
 });
+//generate bar
+Route::get('certificate/generate', function () {
+    return view('superadmin.certificate.generate');
+})->name('superadmin.certificate.generate');
+
+//data bar
+Route::get('/data', function () {
+    return view('data');
+})->name('data');
+
+//template bar
+Route::group(['middleware' => ['role:super-admin'], 'prefix' => 'superadmin'], function () {
+    Route::get('/certificate/template', [CertifController::class, 'template'])->name('certificate.template');
+});
+
+//add template
+Route::group(['middleware' => ['role:super-admin'], 'prefix' => 'superadmin'], function () {
+    Route::post('/certificate/store', [CertifController::class, 'store'])->name('certificate.store');
+});
+Route::get('/templates', [CertifController::class, 'index'])->name('templates.index');
+Route::get('/generate/{template_id}', [CertifController::class, 'generate'])->name('generate');
+
+
+
+
+
+
+
+
+
+
 
 // Certificate Generation and Emailing
 Route::post('/send-certificate', function (Illuminate\Http\Request $request) {

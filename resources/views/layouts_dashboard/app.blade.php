@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sidebar with Toggle</title>
+    <link rel="stylesheet" href="/public/assets/css/style.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -63,7 +64,7 @@
     </div>
 
     <!-- Menu Items -->
-    <a href="{{ route('certificate') }}" class="d-flex align-items-center py-3 px-3 text-dark text-decoration-none">
+    <a href="{{ route('superadmin.certificate.generate') }}" class="d-flex align-items-center py-3 px-3 text-dark text-decoration-none">
         <i class="bi bi-files-alt me-2"></i> <span class="menu-text">Generated</span>
     </a>
     <a href="{{ route('data') }}" class="d-flex align-items-center py-3 px-3 text-dark text-decoration-none">

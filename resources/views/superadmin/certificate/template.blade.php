@@ -13,7 +13,7 @@
                     <img src="{{ asset($template['preview']) }}" class="card-img-top" alt="{{ $template['name'] }}">
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ $template['name'] }}</h5>
-                        <a href="{{ route('certificate.generate', ['template_id' => $template['id']]) }}" class="btn btn-success">Select</a>
+                        <a href="{{ route('superadmin.certificate.generate', ['template_id' => $template['id']]) }}" class="btn btn-success">Select</a>
                     </div>
                 </div>
             </div>

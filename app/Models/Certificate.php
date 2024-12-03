@@ -16,6 +16,7 @@ class Certificate extends Model
     protected $fillable = [
         'event_id', 
         'participant_id',
+        'template_id',
         'style',
         'signature',
         
@@ -37,5 +38,10 @@ class Certificate extends Model
 
     public function participant(){
         return $this->belongsTo(Participant::class);
+    }
+
+    public function template()
+    {
+        return $this->belongsTo(CertificateTemplate::class, 'template_id'); 
     }
 }
